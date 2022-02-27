@@ -4,13 +4,13 @@
     {
         public override decimal ValueToPay()
         {
-            return Price+(Price*(decimal)Tax);
+            return Price + (Price * (decimal)Tax);
         }
 
         public override string ToString()
         {
             return $"{base.ToString()}" +
-                $"\n\tValue......:{$"{ValueToPay():C2}", 15}";
+                $"\n\tValue......:{$"{ValueToPay():C2}",15}";
         }
     }
 }

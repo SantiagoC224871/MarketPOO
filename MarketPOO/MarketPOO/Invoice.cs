@@ -1,30 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MarketPOO
+﻿namespace MarketPOO
 {
     public class Invoice : IPay
     {
-        private string _products;
-
-        public void AddProduct(Product product)
+        private Product _products;
+        public Invoice()
         {
-            throw new NotImplementedException();
+            
         }
-
+        public Product AddProduct(Product product)
+        {
+            
+            _products=product;
+            return _products;
+        }
         public decimal ValueToPay()
         {
-            return 10;
+            List < Product > Products = new List < Product >();
+            decimal total = 0;
+
+            foreach (Product Product in Products)
+            {
+                total += Product.ValueToPay();
+            }
+            return total;
         }
         public override string ToString()
         {
-            return $"RECEIPT\n------------------------------" +
-                $"{base.ToString()}" +
-                $"\n\tValue......:{$"{ValueToPay():C2}",15}";
+            return $" RECEIPT\n" +
+                $"------------------------------------------------\n" +
+                $"\n\tProducts...:{$"{_products}",15}" +
+                $"\n\tTOTAL:......:{$"{ValueToPay():C2}",15}";
         }
+
+
 
     }
 }
