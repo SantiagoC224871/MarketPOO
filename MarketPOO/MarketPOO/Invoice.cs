@@ -2,23 +2,21 @@
 {
     public class Invoice : IPay
     {
-        private Product _products;
         public Invoice()
         {
-            
+
         }
-        public Product AddProduct(Product product)
+        private List<Product> _products = new List<Product>();
+        public void AddProduct(Product Product)
         {
-            
-            _products=product;
-            return _products;
+            _products.Add(Product);
         }
         public decimal ValueToPay()
         {
-            List < Product > Products = new List < Product >();
+
             decimal total = 0;
 
-            foreach (Product Product in Products)
+            foreach (Product Product in _products)
             {
                 total += Product.ValueToPay();
             }
@@ -26,10 +24,15 @@
         }
         public override string ToString()
         {
-            return $" RECEIPT\n" +
-                $"------------------------------------------------\n" +
-                $"\n\tProducts...:{$"{_products}",15}" +
-                $"\n\tTOTAL:......:{$"{ValueToPay():C2}",15}";
+            Console.WriteLine($" RECEIPT\n" +
+                $"------------------------------------------------");
+            foreach (Product Product in _products)
+            {
+                Console.WriteLine(Product.ToString());
+            }
+            return 
+                $"\t\t     =============="+
+                $"\nTOTAL:{$"\t\t{ValueToPay():C2}",15}";
         }
 
 

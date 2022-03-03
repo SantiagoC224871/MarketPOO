@@ -16,10 +16,16 @@
         }
         public override string ToString()
         {
+            List<String> composedproducts = new List<String>();
+
+            foreach (Product Product in Products)
+            {
+                composedproducts.Add(Product.Description);
+            }
             return $"   {Id} {Description}" +
-                $"\n\tProducts...:{$" {Products[0].Description}, {Products[1].Description}, {Products[2].Description}, {Products[3].Description}",15}" +
-                $"\n\tDiscount...:{$"{Discount:P2}",15}" +
-                $"\n\tValue......:{$"{ValueToPay():C2}",15}";
+            $"\n\tProducts...: {$"{String.Join(",", composedproducts)}",15}" +
+            $"\n\tDiscount...: {$"{Discount:P2}",15}" +
+            $"\n\tValue......: {$"{ValueToPay():C2}",15}";
         }
     }
 }
